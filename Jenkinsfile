@@ -51,8 +51,10 @@ spec:
                 container('docker'){
                     sh "env"
                     sh "mkdir out"
-                    sh "echo $JENKINS_AGENT_WORKDIR"
-                    sh "ls -ldtr "
+                    sh "echo $PWD"
+                    sh "echo $WORKSPACE"
+                    sh "ls -ldtr $PWD"
+                    sh "ls -ldtr $WORKSPACE"
                     sh "ls -ltr $JENKINS_AGENT_WORKDIR/workspace/Test"
                     sh "ls -ltr $JENKINS_AGENT_WORKDIR/templates"
                     sh "ls -ltr $JENKINS_AGENT_WORKDIR/variables"
