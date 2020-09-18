@@ -52,6 +52,7 @@ spec:
                     sh "docker images"
                     sh "mkdir out"
                     sh "echo $PWD"
+                    sh "ls -ltr"
                     sh "ls -ltr $PWD/templates"
                     sh "ls -ltr $PWD/variables"
                     sh "docker run --rm -v $PWD/templates:/templates -v $PWD/variables:/variables dinutac/jinja2docker:latest /templates/template.json /variables/vars.json"
