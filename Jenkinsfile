@@ -51,11 +51,11 @@ spec:
                 container('docker'){
                     sh "docker images"
                     sh "mkdir out"
-                    sh "echo $PWD"
+                    sh "echo $JENKINS_AGENT_WORKDIR"
                     sh "ls -ltr "
-                    sh "ls -ltr $PWD"
-                    sh "ls -ltr $PWD/templates"
-                    sh "ls -ltr $PWD/variables"
+                    sh "ls -ltr $JENKINS_AGENT_WORKDIR"
+                    sh "ls -ltr $JENKINS_AGENT_WORKDIR/templates"
+                    sh "ls -ltr $JENKINS_AGENT_WORKDIR/variables"
                     sh "docker run --rm -v $PWD/templates:/templates -v $PWD/variables:/variables dinutac/jinja2docker:latest /templates/template.json /variables/vars.json"
                     sh "ls -ltr"
                 }
