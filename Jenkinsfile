@@ -76,12 +76,6 @@ spec:
     post {
         cleanup {
             echo '> cleaning-up the docker build images ...'
-            container('docker-compose'){
-                sh "docker-compose ${DOCKER_COMPOSE_OPTIONS} down -v --rmi=all"
-            }
-            container('alpine'){
-                sh 'rm -rf out'
-            }
         }
     }
 }
