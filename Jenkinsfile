@@ -55,6 +55,7 @@ spec:
                     sh "ls -ldtr $WORKSPACE"
                     sh "ls -ltr $JENKINS_AGENT_WORKDIR/workspace/Test"
                     sh "ls -ltr /home/jenkins/agent/workspace/Test/variables"
+                    sh "docker run --rm -v $WORKSPACE/templates:/templates -v $WORKSPACE/variables:/variables dinutac/jinja2docker:latest ls -ltr"
                     sh "docker run --rm -v $WORKSPACE/templates:/templates -v $WORKSPACE/variables:/variables dinutac/jinja2docker:latest /templates/templates.json /variables/vars.json"
                     sh "ls -ltr"
                 }
