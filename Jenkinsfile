@@ -50,8 +50,11 @@ spec:
                 echo '> Building images using docker-compose'
                 container('docker-compose'){
                     sh "docker images"
+                    sh "mkdir out"
+                    sh "docker run --rm -v $PWD/templates:/templates -v $PWD/variables:/variables dinutac/jinja2docker:latest /templates/template.json /variables/vars.json > out/result.json"
                     sh "ls -ltr"
                 }
+                sh 'cat out/result.json'
                 echo '> Build Successful'
             }
         }
