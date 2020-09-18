@@ -1,0 +1,4 @@
+Os: {{os}}
+Flavour: {{flavour}}
+   
+Path: {{environ('PATH')}}
