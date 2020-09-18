@@ -52,7 +52,7 @@ spec:
                     sh "docker images"
                     sh "mkdir out"
                     sh "echo $JENKINS_AGENT_WORKDIR"
-                    sh "ls -ltr "
+                    sh "ls -ldtr "
                     sh "ls -ltr $JENKINS_AGENT_WORKDIR"
                     sh "ls -ltr $JENKINS_AGENT_WORKDIR/templates"
                     sh "ls -ltr $JENKINS_AGENT_WORKDIR/variables"
