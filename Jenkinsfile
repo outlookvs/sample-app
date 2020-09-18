@@ -52,7 +52,7 @@ spec:
                     sh "docker images"
                     sh "mkdir out"
                     sh "echo $PWD"
-                    sh "docker run --rm -v $PWD/templates:/templates -v $PWD/variables:/variables dinutac/jinja2docker:latest /templates/template.json /variables/vars.json > out/result.json"
+                    sh "docker run --rm -v $PWD/templates:/templates -v $PWD/variables:/variables dinutac/jinja2docker:latest /templates/template.json /variables/vars.json \> out/result.json"
                     sh "ls -ltr"
                 }
                 sh 'cat out/result.json'
