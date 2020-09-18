@@ -51,17 +51,13 @@ spec:
                 container('docker'){
                     sh "env"
                     sh "mkdir out"
-                    sh "echo $PWD"
                     sh "echo $WORKSPACE"
-                    sh "ls -ldtr $PWD"
                     sh "ls -ldtr $WORKSPACE"
                     sh "ls -ltr $JENKINS_AGENT_WORKDIR/workspace/Test"
-                    sh "ls -ltr $JENKINS_AGENT_WORKDIR/templates"
-                    sh "ls -ltr $JENKINS_AGENT_WORKDIR/variables"
-                    sh "docker run --rm -v $PWD/templates:/templates -v $PWD/variables:/variables dinutac/jinja2docker:latest /templates/template.json /variables/vars.json"
+                    sh "docker run --rm -v $WORKSPACE/templates:/templates -v $WORKSPACE/variables:/variables -v $WORKSPACE/out:/out dinutac/jinja2docker:latest /templates/template.json /variables/vars.json \\> /out/result.json"
                     sh "ls -ltr"
                 }
-                sh 'cat result.json'
+                sh 'cat out/result.json'
                 echo '> Build Successful'
             }
         }
