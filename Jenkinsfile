@@ -54,9 +54,9 @@ spec:
                     sh "echo $WORKSPACE"
                     sh "ls -ldtr $WORKSPACE"
                     sh "ls -ltr $JENKINS_AGENT_WORKDIR/workspace/Test"
-                    sh "ls -ltr /home/jenkins/agent/workspace/Test/variables"
-                    // sh "docker run --rm dinutac/jinja2docker:latest $WORKSPACE/templates/templates.json $WORKSPACE/variables/vars.json"
-                    sh "docker run --rm dinutac/jinja2docker:latest ./templates/templates.json ./variables/vars.json"
+                    sh "ls -ltr $WORKSPACE/templates"
+                    sh "ls -ltr $WORKSPACE/variables"
+                    sh "docker run --rm -v $WORKSPACE/templates:/templates -v $WORKSPACE/variables:/variables dinutac/jinja2docker:latest templates/templates.json variables/vars.json"
                     sh "ls -ltr"
                 }
                 // sh 'cat out/result.json'
