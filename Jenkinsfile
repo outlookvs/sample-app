@@ -49,11 +49,11 @@ spec:
             steps {
                 echo '> Building images using docker-compose'
                 container('docker'){
-                    sh "docker images"
+                    sh "env"
                     sh "mkdir out"
                     sh "echo $JENKINS_AGENT_WORKDIR"
                     sh "ls -ldtr "
-                    sh "ls -ltr $JENKINS_AGENT_WORKDIR"
+                    sh "ls -ltr $JENKINS_AGENT_WORKDIR/workspace/Test"
                     sh "ls -ltr $JENKINS_AGENT_WORKDIR/templates"
                     sh "ls -ltr $JENKINS_AGENT_WORKDIR/variables"
                     sh "docker run --rm -v $PWD/templates:/templates -v $PWD/variables:/variables dinutac/jinja2docker:latest /templates/template.json /variables/vars.json"
