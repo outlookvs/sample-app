@@ -12,13 +12,8 @@ spec:
     command:
     - cat
     tty: true
-  - name: jinja2
-    image: dinutac/jinja2docker:latest
-    command:
-    - cat
-    tty: true
-  - name: docker-compose
-    image: docker/compose:latest
+  - name: docker
+    image: docker:latest
     command:
     - cat
     tty: true
@@ -53,7 +48,7 @@ spec:
         stage('Build') {
             steps {
                 echo '> Building images using docker-compose'
-                container('jinja2'){
+                container('docker'){
                     sh "docker images"
                     sh "mkdir out"
                     sh "echo $PWD"
