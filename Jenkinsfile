@@ -50,6 +50,7 @@ spec:
                 echo '> Building images using docker-compose'
                 container('docker-compose'){
                     sh "docker images"
+                    sh "ls -ltr"
                 }
                 echo '> Build Successful'
             }
