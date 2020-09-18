@@ -12,6 +12,11 @@ spec:
     command:
     - cat
     tty: true
+  - name: jinja2
+    image: dinutac/jinja2docker:latest
+    command:
+    - cat
+    tty: true
   - name: docker-compose
     image: docker/compose:latest
     command:
@@ -48,11 +53,13 @@ spec:
         stage('Build') {
             steps {
                 echo '> Building images using docker-compose'
-                container('docker-compose'){
+                container('jinja2'){
                     sh "docker images"
                     sh "mkdir out"
                     sh "echo $PWD"
-                    sh "docker run --rm -v $PWD:/workspace  dinutac/jinja2docker:latest /workspace/templates/template.json /workspace/variables/vars.json"
+                    sh "ls -ltr $PWD/templates"
+                    sh "ls -ltr $PWD/variables"
+                    sh "docker run --rm -v $PWD/templates:/templates -v $PWD/variables:/variables dinutac/jinja2docker:latest /templates/template.json /variables/vars.json"
                     sh "ls -ltr"
                 }
                 sh 'cat result.json'
