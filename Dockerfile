@@ -4,6 +4,8 @@ FROM alpine:3.11
 RUN apk add --no-cache python3
 RUN pip3 install pip==20.2.2 --no-cache
 
+RUN mkdir /work/
+
 # Install jinja2-cli
 RUN pip3 install jinja2-cli[yaml,toml,xml]==0.7.0
 
