@@ -58,6 +58,7 @@ spec:
         stage('Build') {
             steps {
                 echo '> Building images using docker-compose'
+                sh "mkdir out"
                 container('python') {
                     sh 'pip3 install jinja2-cli[yaml,toml,xml]==0.7.0'
                     sh "jinja2 templates/template.json variables/vars.json -o out/result.json"
