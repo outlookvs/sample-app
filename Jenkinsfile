@@ -52,7 +52,6 @@ spec:
         }
         stage('Build') {
             steps {
-                sh "kubectl get secret"
                 echo '> Building images using docker-compose'
                 container('docker') {
                     sh 'docker build -t clam/jinja2 .'
