@@ -12,8 +12,13 @@ spec:
     command:
     - cat
     tty: true
+  - name: python
+    image: python:latest
+    command:
+    - cat
+    tty: true
   - name: jinja2
-    image: gcr.io/dev-telus-clam/builders/jinja2docker
+    image: venkateshsampath/jinja2docker
     command:
     - cat
     tty: true
@@ -53,9 +58,8 @@ spec:
         stage('Build') {
             steps {
                 echo '> Building images using docker-compose'
-                container('docker') {
-                    sh 'docker build -t clam/jinja2 .'
-                    sh 'docker run --rm -v $WORKSPACE/templates/template.json:/work/templates -v $WORKSPACE/variables/vars.json:/work/variables clam/jinja2:latest  /work/templates/template.json /work/variables/vars.json'
+                container('python') {
+                    sh 'pip3 install jinja2-cli[yaml,toml,xml]==0.7.0'
                 }
                 container('jinja2'){
                     sh "env"
