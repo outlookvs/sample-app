@@ -55,7 +55,7 @@ spec:
                 echo '> Building images using docker-compose'
                 container('docker') {
                     sh 'docker build -t clam/jinja2 .'
-                    sh 'docker run --rm -v templates/template.json:/work/templates -v variables/vars.json:/work/variables clam/jinja2:latest  /work/templates/template.json /work/variables/vars.json'
+                    sh 'docker run --rm -v $WORKSPACE/templates/template.json:/work/templates -v $WORKSPACE/variables/vars.json:/work/variables clam/jinja2:latest  /work/templates/template.json /work/variables/vars.json'
                 }
                 container('jinja2'){
                     sh "env"
