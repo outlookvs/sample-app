@@ -2,7 +2,6 @@ pipeline {
 
     agent {
         kubernetes {
-            imagePullSecrets ['dev-telus-clam-jenkins-json-key']
             yaml '''
 apiVersion: v1
 kind: Pod
@@ -53,7 +52,12 @@ spec:
         }
         stage('Build') {
             steps {
+                sh "kubectl get secret"
                 echo '> Building images using docker-compose'
+                container('docker') {
+                    sh 'docker build -t clam/jinja2 .'
+                    sh 'docker run -rm -v templates/template.json:/work/templates -v variables/vars.json:/work/variables clam/jinja2:latest  /work/templates/template.json /work/variables/vars.json'
+                }
                 container('jinja2'){
                     sh "env"
                     sh "mkdir out"
