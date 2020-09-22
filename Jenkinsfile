@@ -60,14 +60,7 @@ spec:
                 echo '> Building images using docker-compose'
                 container('python') {
                     sh 'pip3 install jinja2-cli[yaml,toml,xml]==0.7.0'
-                }
-                container('jinja2'){
-                    sh "env"
-                    sh "mkdir out"
-                    sh "echo $WORKSPACE"
-                    sh "ls -ltr"
                     sh "jinja2 templates/template.json variables/vars.json -o out/result.json"
-                    sh "ls -ltr"
                 }
                 sh 'cat out/result.json'
                 echo '> Build Successful'
