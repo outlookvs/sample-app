@@ -63,10 +63,10 @@ spec:
                     // sh "ls -ltr $WORKSPACE/variables"
                     // sh "docker run --rm -v $WORKSPACE/templates:/templates -v $WORKSPACE/variables:/variables dinutac/jinja2docker:latest templates/templates.json variables/vars.json"
                     sh "ls -ltr"
-                    sh "jinja2 templates/template.json variables/vars.json"                    
+                    sh "jinja2 templates/template.json variables/vars.json \\> out/result.json"
                     sh "ls -ltr"
                 }
-                // sh 'cat out/result.json'
+                sh 'cat out/result.json'
                 echo '> Build Successful'
             }
         }
